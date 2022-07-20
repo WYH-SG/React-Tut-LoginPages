@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from "axios";
 // import '../styles/LoginPage.css'
+// reference for redirect: https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
 
@@ -23,9 +25,18 @@ function LoginPage() {
                     setLoginStatus(response.data.message);
                 } else {
                     console.log("Login sucessful");
-                    setLoginStatus(response.data[0].username);
+                    var temp = "welcome " + response.data[0].username + "!";
+                    // setLoginStatus(response.data[0].username);
+                    setLoginStatus(temp);
+                    redirect(); // redirect to another page on successful login
                 }
         });
+    }
+
+    // Function to redirect to dashboard page
+    let navigate = useNavigate(); 
+    const redirect = () => {
+        navigate('/dashboard');
     }
 
     return (
