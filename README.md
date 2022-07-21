@@ -1,4 +1,8 @@
 # React-Tut-LoginPages
+References: 
+- https://www.youtube.com/watch?v=W-sZo6Gtx_E
+- https://www.youtube.com/watch?v=sTHWNPVNvm8&t=0s
+- https://www.youtube.com/watch?v=KgXT63wPMPc
 
 ## Set up for Server side
 **Set up NodeJS & Install libaries**
@@ -6,6 +10,12 @@
 - Run "npm init"
 - run "npm install nodemon"
 - run "npm install express cors mysql mysql2"
+
+for encryption
+- npm install bcrypt
+
+For Cookies & Session
+- npm install express-session body-parser cookie-parser
 
 Create file "index.js" inside server folder
 - Create connection to mySQL database schema on localhost
@@ -31,6 +41,15 @@ Create file "index.js" inside server folder
 **Creating the table and columns**
 - Under server/models/Post.js
 - export out the columsn and datatype for each
+- If creating table using mySQL workbench
+```
+CREATE TABLE users (
+    id int NOT NULL AUTO_INCREMENT,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
 
 **To resolve CORS policy on localhost**
 ```

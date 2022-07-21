@@ -1,5 +1,5 @@
 // using react extenion type "rfce" to auto create the config to export
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 // import '../styles/LoginPage.css'
 // reference for redirect: https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page
@@ -11,6 +11,9 @@ function LoginPage() {
     const [password, setPassword] = useState("");
 
     var [loginStatus, setLoginStatus] = useState("");
+
+    // Need to set pages to have credentials true to prevent server error
+    axios.defaults.withCredentials = true;
 
     // Function for onSubmit, when button is clicked
     // Post API can be seen at server/index.js
@@ -38,6 +41,25 @@ function LoginPage() {
     const redirect = () => {
         navigate('/dashboard');
     }
+
+    // useEffect() will run everytime we refresh the page
+    // Call server index.js get() function for login page
+    useEffect(() => {
+
+        axios.get("http://localhost:3001/login").then((response) => {
+
+            console.log("session", response);
+
+            // If user is logged in and refresh the page, still considered logged in from cookie saved.
+            if (response.data.loggedIn == true) {
+                var logged = "Welcome " + response.data.user[0].username + "!";
+                setLoginStatus(logged);
+            } else {
+                var notLogged = "Please Log in";
+                setLoginStatus(notLogged);
+            }
+        });
+    }, []);
 
     return (
         <div className='createLoginPage'>

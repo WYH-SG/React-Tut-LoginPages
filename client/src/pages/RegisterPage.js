@@ -8,15 +8,34 @@ function RegisterPage() {
     const [usernameReg, setUsernameReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
 
+    var [registerStatus, setRegisterStatus] = useState("");
+
+    // Need to set pages to have credentials true to prevent server error
+    axios.defaults.withCredentials = true;
+
     // Function for onSubmit, when button is clicked
     // Post API can be seen at server/index.js
     const register = () => {
-        axios.post(
-            "http://localhost:3001/register", 
-            {username: usernameReg, password: passwordReg} )
-            .then((response) => {
-                console.log("Registration sucess", response.data);
-        });
+
+        // Check if it's empty or null
+        // Reference: https://stackoverflow.com/questions/32625513/checking-if-multiple-variables-is-not-null-undefined-or-empty-in-an-efficient-w
+        if(usernameReg && passwordReg) {
+            console.log("not null")
+
+            axios.post(
+                "http://localhost:3001/register", 
+                {username: usernameReg, password: passwordReg} )
+                .then((response) => {
+                    console.log("Registration sucess", response.data);
+            });
+
+            var sucess = "Register successful!";
+            setRegisterStatus(sucess);
+
+        } else {
+            var failure = "Username & Password is not valid";
+            setRegisterStatus(failure);
+        }
     }
 
     return (        
@@ -47,6 +66,7 @@ function RegisterPage() {
 
                 <button onClick={register}>Register</button>
             </div>
+            <h1>{registerStatus}</h1>
 
         </div>
     )
