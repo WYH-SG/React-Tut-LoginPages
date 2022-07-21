@@ -17,6 +17,9 @@ for encryption
 For Cookies & Session
 - npm install express-session body-parser cookie-parser
 
+For JSON Web Token (JWT)
+- npm install jsonwebtoken
+
 Create file "index.js" inside server folder
 - Create connection to mySQL database schema on localhost
 ```
