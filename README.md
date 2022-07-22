@@ -37,7 +37,7 @@ Create file "index.js" inside server folder
 ```
 
 **For Database Modification**
-- Under Server/config/config.json
+- Under Server/index.js
 - modify the username, password, database to the database in mysql
 - host, set to the ip address of the database if hosted online
 
