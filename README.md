@@ -42,8 +42,6 @@ Create file "index.js" inside server folder
 - host, set to the ip address of the database if hosted online
 
 **Creating the table and columns**
-- Under server/models/Post.js
-- export out the columsn and datatype for each
 - If creating table using mySQL workbench
 ```
 CREATE TABLE users (
